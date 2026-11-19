@@ -217,7 +217,7 @@ jobs:
       - name: restore cache
         uses: actions/cache/restore@v4
         with:
-          key: ${{ runner.os }}-${{ matrix.compiler }}-${{ github.sha }}
+          key: ${{ runner.os }}-${{ matrix.compiler }}-${{ hashFiles('cabal.project', 'cabal.project.local', 'source/optparse-applicative.cabal') }}
           path: ~/.cabal/store
           restore-keys: ${{ runner.os }}-${{ matrix.compiler }}-
       - name: install dependencies
@@ -248,5 +248,5 @@ jobs:
         uses: actions/cache/save@v4
         if: always()
         with:
-          key: ${{ runner.os }}-${{ matrix.compiler }}-${{ github.sha }}
+          key: ${{ runner.os }}-${{ matrix.compiler }}-${{ hashFiles('cabal.project', 'cabal.project.local', 'source/optparse-applicative.cabal') }}
           path: ~/.cabal/store
